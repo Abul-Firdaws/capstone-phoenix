@@ -1,0 +1,3 @@
+NAMESPACE   NAME           MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+taskapp     backend-pdb    1               N/A               1                     14h
+taskapp     frontend-pdb   1               N/A               2                     14h

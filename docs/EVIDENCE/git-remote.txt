@@ -1,0 +1,2 @@
+origin	git@github.com:Abul-Firdaws/capstone-phoenix.git (fetch)
+origin	git@github.com:Abul-Firdaws/capstone-phoenix.git (push)

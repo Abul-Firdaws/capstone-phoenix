@@ -1,0 +1,16 @@
+NAMESPACE      NAME                               TYPE           CLUSTER-IP      EXTERNAL-IP                             PORT(S)                      AGE
+argocd         argocd-applicationset-controller   ClusterIP      10.43.241.166   <none>                                  7000/TCP                     17h
+argocd         argocd-dex-server                  ClusterIP      10.43.3.14      <none>                                  5556/TCP,5557/TCP            17h
+argocd         argocd-redis                       ClusterIP      10.43.82.225    <none>                                  6379/TCP                     17h
+argocd         argocd-repo-server                 ClusterIP      10.43.84.248    <none>                                  8081/TCP                     17h
+argocd         argocd-server                      ClusterIP      10.43.68.207    <none>                                  80/TCP,443/TCP               17h
+cert-manager   cert-manager                       ClusterIP      10.43.59.136    <none>                                  9402/TCP                     18h
+cert-manager   cert-manager-cainjector            ClusterIP      10.43.15.84     <none>                                  9402/TCP                     18h
+cert-manager   cert-manager-webhook               ClusterIP      10.43.104.123   <none>                                  443/TCP,9402/TCP             18h
+default        kubernetes                         ClusterIP      10.43.0.1       <none>                                  443/TCP                      21h
+kube-system    kube-dns                           ClusterIP      10.43.0.10      <none>                                  53/UDP,53/TCP,9153/TCP       21h
+kube-system    metrics-server                     ClusterIP      10.43.11.149    <none>                                  443/TCP                      21h
+kube-system    traefik                            LoadBalancer   10.43.60.143    172.31.1.105,172.31.2.243,172.31.6.57   80:31238/TCP,443:32337/TCP   21h
+taskapp        backend                            ClusterIP      10.43.183.107   <none>                                  5000/TCP                     16h
+taskapp        frontend                           ClusterIP      10.43.50.195    <none>                                  80/TCP                       15h
+taskapp        postgres                           ClusterIP      None            <none>                                  5432/TCP                     17h

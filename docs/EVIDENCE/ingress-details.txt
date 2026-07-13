@@ -1,0 +1,16 @@
+Name:             taskapp-ingress
+Labels:           <none>
+Namespace:        taskapp
+Address:          172.31.1.105,172.31.2.243,172.31.6.57
+Ingress Class:    traefik
+Default backend:  <default>
+TLS:
+  taskapp-tls terminates taskapp-firdaws.duckdns.org
+Rules:
+  Host                         Path  Backends
+  ----                         ----  --------
+  taskapp-firdaws.duckdns.org  
+                               /   frontend:80 (10.42.2.22:80,10.42.0.20:80)
+Annotations:                   argocd.argoproj.io/tracking-id: taskapp:networking.k8s.io/Ingress:taskapp/taskapp-ingress
+                               cert-manager.io/cluster-issuer: letsencrypt-prod
+Events:                        <none>

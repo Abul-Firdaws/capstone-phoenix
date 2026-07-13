@@ -1,0 +1,42 @@
+Name:         taskapp-tls
+Namespace:    taskapp
+Labels:       <none>
+Annotations:  <none>
+API Version:  cert-manager.io/v1
+Kind:         Certificate
+Metadata:
+  Creation Timestamp:  2026-07-13T04:37:18Z
+  Generation:          1
+  Owner References:
+    API Version:           networking.k8s.io/v1
+    Block Owner Deletion:  true
+    Controller:            true
+    Kind:                  Ingress
+    Name:                  taskapp-ingress
+    UID:                   889a8591-8d7c-4df4-aca5-4b0a8a538ae4
+  Resource Version:        23073
+  UID:                     d843b0f4-b3e4-4c48-8034-9a41489117b5
+Spec:
+  Dns Names:
+    taskapp-firdaws.duckdns.org
+  Issuer Ref:
+    Group:      cert-manager.io
+    Kind:       ClusterIssuer
+    Name:       letsencrypt-prod
+  Secret Name:  taskapp-tls
+  Usages:
+    digital signature
+    key encipherment
+Status:
+  Conditions:
+    Last Transition Time:  2026-07-13T04:37:47Z
+    Message:               Certificate is up to date and has not expired
+    Observed Generation:   1
+    Reason:                Ready
+    Status:                True
+    Type:                  Ready
+  Not After:               2026-10-11T03:39:16Z
+  Not Before:              2026-07-13T03:39:17Z
+  Renewal Time:            2026-09-11T03:39:16Z
+  Revision:                1
+Events:                    <none>

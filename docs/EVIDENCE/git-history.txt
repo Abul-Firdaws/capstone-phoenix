@@ -1,0 +1,6 @@
+6a7c8ba Configure DuckDNS domain and TLS
+4ecc8ec Add infrastructure automation and update documentation
+ed93306 Fix Kubernetes backend and frontend deployments
+c2b906d Merge pull request #1 from victor-ok/patch-1
+bd754d1 Add submission link to README
+a73e6a1 Phoenix CapStone Project

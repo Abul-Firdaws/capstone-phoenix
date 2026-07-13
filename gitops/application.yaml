@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR-GITHUB-USERNAME/capstone-phoenix.git   # VERIFY: your fork's URL
+    repoURL: https://github.com/Abul-Firdaws/capstone-phoenix.git
     targetRevision: main
     path: manifests
   destination:

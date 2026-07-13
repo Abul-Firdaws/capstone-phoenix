@@ -1,0 +1,2 @@
+NAMESPACE   NAME          REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+taskapp     backend-hpa   Deployment/backend   cpu: 1%/60%   2         6         2          14h

@@ -1,0 +1,2 @@
+NAMESPACE   NAME              CLASS     HOSTS                         ADDRESS                                 PORTS     AGE
+taskapp     taskapp-ingress   traefik   taskapp-firdaws.duckdns.org   172.31.1.105,172.31.2.243,172.31.6.57   80, 443   12h

@@ -1,0 +1,317 @@
+Name:         taskapp
+Namespace:    argocd
+Labels:       <none>
+Annotations:  <none>
+API Version:  argoproj.io/v1alpha1
+Kind:         Application
+Metadata:
+  Creation Timestamp:  2026-07-13T04:09:33Z
+  Generation:          299
+  Resource Version:    58274
+  UID:                 e7f74b1f-261a-4fbd-911c-cae48682bf18
+Spec:
+  Destination:
+    Namespace:  taskapp
+    Server:     https://kubernetes.default.svc
+  Project:      default
+  Source:
+    Path:             manifests
+    Repo URL:         https://github.com/Abul-Firdaws/capstone-phoenix.git
+    Target Revision:  main
+  Sync Policy:
+    Automated:
+      Prune:      true
+      Self Heal:  true
+    Sync Options:
+      CreateNamespace=true
+Status:
+  Controller Namespace:  argocd
+  Health:
+    Last Transition Time:  2026-07-13T04:37:19Z
+    Status:                Healthy
+  History:
+    Deploy Started At:  2026-07-13T04:37:17Z
+    Deployed At:        2026-07-13T04:37:18Z
+    Id:                 0
+    Initiated By:
+      Automated:  true
+    Revision:     6a7c8ba5d8ab39a6ea3ae8b850cf3d327697b4f9
+    Source:
+      Path:             manifests
+      Repo URL:         https://github.com/Abul-Firdaws/capstone-phoenix.git
+      Target Revision:  main
+  Operation State:
+    Finished At:  2026-07-13T04:37:18Z
+    Message:      successfully synced (all tasks run)
+    Operation:
+      Initiated By:
+        Automated:  true
+      Retry:
+        Limit:  5
+      Sync:
+        Prune:     true
+        Revision:  6a7c8ba5d8ab39a6ea3ae8b850cf3d327697b4f9
+        Source:
+          Path:             manifests
+          Repo URL:         https://github.com/Abul-Firdaws/capstone-phoenix.git
+          Target Revision:  main
+        Sync Options:
+          CreateNamespace=true
+    Phase:       Succeeded
+    Started At:  2026-07-13T04:37:17Z
+    Sync Result:
+      Resources:
+        Group:       
+        Hook Phase:  Running
+        Kind:        Namespace
+        Message:     namespace/taskapp unchanged
+        Name:        taskapp
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       policy
+        Hook Phase:  Running
+        Kind:        PodDisruptionBudget
+        Message:     poddisruptionbudget.policy/backend-pdb configured
+        Name:        backend-pdb
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       policy
+        Hook Phase:  Running
+        Kind:        PodDisruptionBudget
+        Message:     poddisruptionbudget.policy/frontend-pdb configured
+        Name:        frontend-pdb
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       
+        Hook Phase:  Running
+        Kind:        Secret
+        Message:     secret/taskapp-secret configured
+        Name:        taskapp-secret
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       
+        Hook Phase:  Running
+        Kind:        ConfigMap
+        Message:     configmap/taskapp-config unchanged
+        Name:        taskapp-config
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       
+        Hook Phase:  Running
+        Kind:        Service
+        Message:     service/frontend unchanged
+        Name:        frontend
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       
+        Hook Phase:  Running
+        Kind:        Service
+        Message:     service/postgres unchanged
+        Name:        postgres
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       
+        Hook Phase:  Running
+        Kind:        Service
+        Message:     service/backend unchanged
+        Name:        backend
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       apps
+        Hook Phase:  Running
+        Images:
+          ghcr.io/ts-a-devops/taskapp-frontend@sha256:dcd38b90762f14c88ec2e1a81527986d05cc926ffa8258f48aa9ecd1ed7e87f0
+        Kind:        Deployment
+        Message:     deployment.apps/frontend unchanged
+        Name:        frontend
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       apps
+        Hook Phase:  Running
+        Images:
+          ghcr.io/ts-a-devops/taskapp-backend@sha256:7ebe1b93baef2c95098d6ce253879b4067ffbe39645a9c4fa5513aff202e4a70
+        Kind:        Deployment
+        Message:     deployment.apps/backend unchanged
+        Name:        backend
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       autoscaling
+        Hook Phase:  Running
+        Kind:        HorizontalPodAutoscaler
+        Message:     horizontalpodautoscaler.autoscaling/backend-hpa unchanged
+        Name:        backend-hpa
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v2
+        Group:       apps
+        Hook Phase:  Running
+        Images:
+          postgres:16.4-alpine
+        Kind:        StatefulSet
+        Message:     statefulset.apps/postgres configured
+        Name:        postgres
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       batch
+        Hook Phase:  Running
+        Images:
+          ghcr.io/ts-a-devops/taskapp-backend@sha256:7ebe1b93baef2c95098d6ce253879b4067ffbe39645a9c4fa5513aff202e4a70
+        Kind:        Job
+        Message:     job.batch/taskapp-migrate unchanged
+        Name:        taskapp-migrate
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       networking.k8s.io
+        Hook Phase:  Running
+        Kind:        Ingress
+        Message:     ingress.networking.k8s.io/taskapp-ingress created
+        Name:        taskapp-ingress
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       cert-manager.io
+        Hook Phase:  Running
+        Kind:        ClusterIssuer
+        Message:     clusterissuer.cert-manager.io/letsencrypt-prod configured
+        Name:        letsencrypt-prod
+        Namespace:   taskapp
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+      Revision:      6a7c8ba5d8ab39a6ea3ae8b850cf3d327697b4f9
+      Source:
+        Path:              manifests
+        Repo URL:          https://github.com/Abul-Firdaws/capstone-phoenix.git
+        Target Revision:   main
+  Reconciled At:           2026-07-13T17:43:18Z
+  Resource Health Source:  appTree
+  Resources:
+    Kind:       ConfigMap
+    Name:       taskapp-config
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Kind:       Namespace
+    Name:       taskapp
+    Status:     Synced
+    Version:    v1
+    Kind:       Secret
+    Name:       taskapp-secret
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Kind:       Service
+    Name:       backend
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Kind:       Service
+    Name:       frontend
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Kind:       Service
+    Name:       postgres
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Group:      apps
+    Kind:       Deployment
+    Name:       backend
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Group:      apps
+    Kind:       Deployment
+    Name:       frontend
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Group:      apps
+    Kind:       StatefulSet
+    Name:       postgres
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Group:      autoscaling
+    Kind:       HorizontalPodAutoscaler
+    Name:       backend-hpa
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v2
+    Group:      batch
+    Kind:       Job
+    Name:       taskapp-migrate
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Group:      cert-manager.io
+    Kind:       ClusterIssuer
+    Name:       letsencrypt-prod
+    Status:     Synced
+    Version:    v1
+    Group:      networking.k8s.io
+    Kind:       Ingress
+    Name:       taskapp-ingress
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Group:      policy
+    Kind:       PodDisruptionBudget
+    Name:       backend-pdb
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+    Group:      policy
+    Kind:       PodDisruptionBudget
+    Name:       frontend-pdb
+    Namespace:  taskapp
+    Status:     Synced
+    Version:    v1
+  Source Hydrator:
+  Source Type:  Directory
+  Summary:
+    External URLs:
+      https://taskapp-firdaws.duckdns.org/
+    Images:
+      ghcr.io/ts-a-devops/taskapp-backend@sha256:7ebe1b93baef2c95098d6ce253879b4067ffbe39645a9c4fa5513aff202e4a70
+      ghcr.io/ts-a-devops/taskapp-frontend@sha256:dcd38b90762f14c88ec2e1a81527986d05cc926ffa8258f48aa9ecd1ed7e87f0
+      postgres:16.4-alpine
+  Sync:
+    Compared To:
+      Destination:
+        Namespace:  taskapp
+        Server:     https://kubernetes.default.svc
+      Source:
+        Path:             manifests
+        Repo URL:         https://github.com/Abul-Firdaws/capstone-phoenix.git
+        Target Revision:  main
+    Revision:             6a7c8ba5d8ab39a6ea3ae8b850cf3d327697b4f9
+    Status:               Synced
+Events:                   <none>

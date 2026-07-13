@@ -1,0 +1,43 @@
+{
+    "_meta": {
+        "hostvars": {
+            "cp1": {
+                "ansible_host": "100.58.240.187",
+                "ansible_ssh_common_args": "-o StrictHostKeyChecking=no",
+                "ansible_ssh_private_key_file": "~/.ssh/phoenix_key.pem",
+                "ansible_user": "ubuntu",
+                "private_ip": "172.31.6.57"
+            },
+            "worker1": {
+                "ansible_host": "44.204.140.95",
+                "ansible_ssh_common_args": "-o StrictHostKeyChecking=no",
+                "ansible_ssh_private_key_file": "~/.ssh/phoenix_key.pem",
+                "ansible_user": "ubuntu"
+            },
+            "worker2": {
+                "ansible_host": "98.92.233.224",
+                "ansible_ssh_common_args": "-o StrictHostKeyChecking=no",
+                "ansible_ssh_private_key_file": "~/.ssh/phoenix_key.pem",
+                "ansible_user": "ubuntu"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "control_plane",
+            "workers"
+        ]
+    },
+    "control_plane": {
+        "hosts": [
+            "cp1"
+        ]
+    },
+    "workers": {
+        "hosts": [
+            "worker1",
+            "worker2"
+        ]
+    }
+}
