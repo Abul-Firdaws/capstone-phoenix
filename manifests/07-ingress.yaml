@@ -5,7 +5,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: YOUR_EMAIL@example.com   # VERIFY: put your real email (Let's Encrypt expiry notices go here)
+    email: saakaabufirdaus@gmail.com
     privateKeySecretRef:
       name: letsencrypt-prod-key
     solvers:
@@ -24,10 +24,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-        - taskapp.YOURNAME.duckdns.org   # VERIFY: your real domain
+        - taskapp-firdaws.duckdns.org  
       secretName: taskapp-tls
   rules:
-    - host: taskapp.YOURNAME.duckdns.org   # VERIFY: your real domain
+    - host: taskapp-firdaws.duckdns.org 
       http:
         paths:
           - path: /
