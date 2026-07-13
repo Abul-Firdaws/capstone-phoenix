@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: taskapp-migrate
+  namespace: taskapp
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-postgres
+          image: postgres:16.4-alpine
+          command:
+            - sh
+            - -c
+            - "until pg_isready -h postgres -p 5432; do echo waiting for postgres...; sleep 3; done"
+      containers:
+        - name: migrate
+          image: ghcr.io/ts-a-devops/taskapp-backend@sha256:7ebe1b93baef2c95098d6ce253879b4067ffbe39645a9c4fa5513aff202e4a70
+          workingDir: /app
+          command: ["alembic", "-c", "/app/alembic.ini", "upgrade", "head"]
+          envFrom:
+            - configMapRef:
+                name: taskapp-config
+            - secretRef:
+                name: taskapp-secret
