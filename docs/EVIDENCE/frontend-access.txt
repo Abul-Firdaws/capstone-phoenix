@@ -1,0 +1,12 @@
+HTTP/2 200 
+accept-ranges: bytes
+cache-control: no-cache
+cache-control: no-cache
+content-type: text/html
+date: Mon, 13 Jul 2026 19:05:25 GMT
+etag: "6a29b2ff-260"
+expires: Mon, 13 Jul 2026 19:05:24 GMT
+last-modified: Wed, 10 Jun 2026 18:54:55 GMT
+server: nginx/1.31.1
+content-length: 608
+
