@@ -1,0 +1,33 @@
+---
+- name: Check if k3s is already installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/k3s
+  register: k3s_bin
+
+- name: Install k3s server
+  ansible.builtin.shell: |
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.36.2+k3s1 sh -s - server --write-kubeconfig-mode 644
+  when: not k3s_bin.stat.exists
+
+- name: Wait for the node-token file to exist
+  ansible.builtin.wait_for:
+    path: /var/lib/rancher/k3s/server/node-token
+    timeout: 90
+
+- name: Read the node join token
+  ansible.builtin.slurp:
+    src: /var/lib/rancher/k3s/server/node-token
+  register: node_token_raw
+
+- name: Store the token as a fact so the workers play can use it
+  ansible.builtin.set_fact:
+    k3s_node_token: "{{ node_token_raw.content | b64decode | trim }}"
+
+- name: Confirm k3s server is responding
+  ansible.builtin.command: k3s kubectl get nodes
+  register: node_check
+  changed_when: false
+
+- name: Show cluster status
+  ansible.builtin.debug:
+    var: node_check.stdout_lines

@@ -1,25 +1,39 @@
-# Cost (fill this in)
+# Cost — Capstone Phoenix
 
-This echoes the Docker lesson's "why one server" thread — except now the answer to "is the
-extra cost worth it?" is yours to argue.
+## Monthly itemized cost (if left running continuously — approximate, verify current
+AWS pricing before relying on these numbers)
 
-## Monthly itemized cost
-| Item | Spec | Qty | $/mo |
+| Item | Spec | Qty | $/mo (approx) |
 |---|---|---:|---:|
-| control-plane VM | … | 1 | … |
-| worker VMs | … | 2+ | … |
-| load balancer / elastic IP | … | … | … |
-| block storage (PVC) | … | … | … |
-| object storage (state, backups) | … | … | … |
-| DNS / domain | … | … | … |
-| **Total** | | | **$…** |
+| Control-plane VM | t3.medium | 1 | ~$30 |
+| Worker VMs | t3.medium | 2 | ~$60 |
+| Block storage (root volumes) | gp3, 20GB each | 3 | ~$5 |
+| Postgres PVC | local-path (uses worker's own disk) | 1 | included above |
+| S3 (Terraform state) | a few KB | 1 | <$0.10 |
+| DynamoDB (state lock) | pay-per-request | 1 | <$1 |
+| Domain (DuckDNS) | free subdomain | 1 | $0 |
+| **Total** | | | **~$96/mo** |
 
-## Compared to the single-server Compose+Portainer deploy
-- That stack cost roughly: $…
-- This cluster costs: $…
-- **What the extra spend buys** (be honest — tie to §0 of the brief): HA, autoscale,
-  zero-downtime, multi-node self-healing. When is it NOT worth it? …
+In practice this build only runs for the hours needed to develop, demo, and grade —
+realistically a few dollars total, not a full month — and is destroyed with
+`terraform destroy` immediately after.
+
+## Compared to the single-server Compose + Portainer deploy
+
+- That stack: 1 small VM, roughly $10–15/month.
+- This cluster: ~$96/month if run continuously.
+- **What the extra ~$80/month buys:** the app survives a node dying, zero-downtime
+  deploys, automatic scaling under load, and self-healing — all things a single server
+  simply cannot do. **When it's not worth it:** a low-traffic internal tool or a
+  personal project where a few minutes of downtime during a manual restart is a
+  non-issue; the single-server setup is far cheaper and simpler to operate for that
+  case.
 
 ## How I'd halve this
-> One concrete paragraph: spot/preemptible workers? smaller control-plane? k3s on 2 nodes?
-> shared ingress? …
+
+Switch the 2 worker nodes to **Spot Instances** (roughly 60–70% cheaper than
+on-demand) since workers are stateless and safely replaceable if reclaimed; drop the
+instance size to `t3.small` for the workers once real resource usage is measured
+(`kubectl top pods`) and requests/limits are right-sized accordingly; and stop
+(not terminate) all 3 nodes outside of active development/demo hours using a
+scheduled Lambda or a cron job, since a stopped EC2 instance is not billed for compute.

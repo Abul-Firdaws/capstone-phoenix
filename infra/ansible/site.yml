@@ -1,0 +1,31 @@
+---
+# Turns 3 bare Ubuntu VMs into one working k3s cluster.
+# Run with: ansible-playbook site.yml
+
+- name: Basic hardening on every node
+  hosts: all
+  become: true
+  roles:
+    - hardening
+
+- name: Install and start k3s server (control-plane)
+  hosts: control_plane
+  become: true
+  roles:
+    - k3s-server
+
+- name: Join workers to the cluster
+  hosts: workers
+  become: true
+  roles:
+    - k3s-agent
+
+- name: Fetch kubeconfig back to this machine
+  hosts: control_plane
+  become: true
+  tasks:
+    - name: Fetch kubeconfig
+      ansible.builtin.fetch:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: ./kubeconfig
+        flat: yes
